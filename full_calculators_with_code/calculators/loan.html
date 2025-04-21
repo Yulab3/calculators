@@ -1,0 +1,13 @@
+
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><title>대출 계산기</title><link rel="stylesheet" href="../css/style.css"></head>
+<body><h1>대출 계산기</h1><input id="loan" type="number" placeholder="대출금"><input id="rate" type="number" placeholder="연이자율(%)"><input id="months" type="number" placeholder="개월 수"><button onclick="calcLoan()">계산</button><div id="result"></div>
+<script>
+function calcLoan() {
+  const p = parseFloat(document.getElementById('loan').value);
+  const r = parseFloat(document.getElementById('rate').value) / 100 / 12;
+  const n = parseFloat(document.getElementById('months').value);
+  if (!p || !r || !n) return document.getElementById('result').innerText = '값을 모두 입력해주세요.';
+  const monthly = p * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+  document.getElementById('result').innerHTML = `월 상환액: ${Math.round(monthly).toLocaleString()} 원`;
+}
+</script></body></html>
